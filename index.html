@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .buttons {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        button{
+            margin-bottom: 20px;
+        }
+        
+    </style>
+
+
+    <div class="buttons">
+        <p>Click the button to convert grade to score</p>
+        <button class="btn-grade-to-score">Convert to Score</button>
+        <p class="score-answer"></p>
+        
+        <p>Click the button to convert score to grade</p>
+        <button class="btn-score-to-grade">Convert to Grade</button>
+        <p class="grade-answer"></p>
+    </div>
+
+    <script>
+        let grade = document.querySelector(".btn-grade-to-score");
+        let score = document.querySelector(".btn-score-to-grade");
+        let scoreAnswer = document.querySelector(".score-answer");
+        let gradeAnswer = document.querySelector(".grade-answer");
+        function gradeToScore(grade){
+            let score;
+            switch(true){
+                // case grade == 'A':
+                   // score = '90 - 100';
+                    //break;
+                case grade >= 90 && grade <= 100 :
+                    score = 'A';
+                    break;
+                //case grade == 'B':
+                  //  score = '80 - 90';
+                    //break;
+                case grade >= 80 && grade < 90 :
+                    score = 'B';
+                    break;
+                case grade >= 70 && grade < 80:
+                    score = 'C';
+                    break;
+                case grade >= 60 && grade < 70:
+                    score = 'D';
+                    break;
+                case grade >= 0 && grade < 60:
+                    score = 'F';
+                    break;
+                default:
+                    score = "Invalid input";
+            }
+            return score;
+        }
+
+        function scoreToGrade(score){
+            if(score >= 90 && score <= 100){
+                return "Your range is 90 - 100";
+            }
+            else if(score >= 80 && score < 90){
+                return "Your range is 80 - 90";
+            }
+            else if(score >= 70 && score < 80){
+                return "Your range is 70 - 80";
+            }
+            else if(score >= 60 && score < 70){
+                return "Your range is 60 - 70";
+            }
+            else if(score >= 0 && score < 60){
+                return "Your range is 0 - 60";
+            }else{
+                return "Invalid score";
+            }
+        }
+        grade.addEventListener('click', () =>{
+            let answerGrade = prompt("Enter grade to convert to score");
+             alert(gradeToScore(answerGrade))
+            scoreAnswer.textContent = gradeToScore(answerGrade)
+            
+        });
+        score.addEventListener('click', () =>{
+            let answerScore = prompt("Enter score to show ");
+            gradeAnswer.textContent = scoreToGrade(answerScore)
+        });
+
+    </script>
+</body>
+
+</html>
